@@ -6,7 +6,10 @@ Application to Summarize Logstash events built on Silex
 Installation
 ------------
 
-To install Podisum, you need PHP 5.3.x. The installation is done with Composer:
+To install Podisum, you need PHP 5.3.x and MongoDB. It uses ttl collections to keep only recent data and discard old data.
+The amount of time data is kept is configured with the X-ttl header.
+
+The installation is done with Composer:
 
     # install composer
     curl -sS https://getcomposer.org/installer | php
@@ -19,7 +22,7 @@ Then, configure your virtual host to to the web directory.
 Configuration
 -------------
 
-Podisum creates summaries of data sent from Logstash. For this, you need to add a http output to your logstash configuration.
+Podisum creates summaries of data sent from Logstash in MongoDB. For this, you need to add a http output to your logstash configuration.
 
 Example:
 
