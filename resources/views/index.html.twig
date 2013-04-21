@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Podisum by ServerGrove</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://twitter.github.io/bootstrap/assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Podisum</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a target="_blank" href="https://github.com/pgodel/podisum">About</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Example row of columns -->
+      <div class="row">
+           {% for collection in data['collections'] %}
+
+        <div class="span3 well">
+          <h4>{{ collection['name'] }}</h4>
+
+            <div class="tabbable"> <!-- Only required for left/right tabs -->
+              <ul class="nav nav-tabs">
+              {% for summaries in collection['summaries'] %}
+                <li class="{{ loop.index == 1 ? 'active' : '' }}"><a href="#{{ collection['name'] }}_tab{{ summaries['ttl'] }}" data-toggle="tab">{{ summaries['ttl'] }}</a></li>
+              {% endfor %}
+              </ul>
+              <div class="tab-content">
+              {% for summaries in collection['summaries'] %}
+                <div class="tab-pane {{ loop.index == 1 ? 'active' : '' }}" id="{{ collection['name'] }}_tab{{ summaries['ttl'] }}">
+                    <ul class="unstyled" style="font-size: .8em">
+                        {% for entry in summaries['entries'] %}
+                        <li><span class="badge badge-{{ entry['counter'] > summaries['avg'] ? 'important' : 'info' }}"><small>{{ entry['counter'] }}</small></span> <div title="{{ entry['field'] }}" style="display: inline-block; max-width: 17em; overflow: hidden">{{ entry['field'] }}</div>
+                            <span style="float: right" class="muted">{{ (entry['counter'] / (summaries['ttl'] / 60))|number_format(2) }}/min</span></li>
+                        {% endfor %}
+                    </ul>
+                    <div>
+                        Avg: <span class="badge badge-inverse">{{ summaries['avg']|number_format(2) }}</span>
+                        <span style="float: right">Entries/min: <span class="badge badge-inverse">{{ summaries['avgm']|number_format(2) }}</span></span>
+                    </div>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+        </div>
+          {% endfor %}
+
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; <a target="_blank" href="http://servergrove.com/">ServerGrove</a> 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://twitter.github.io/bootstrap/assets/js/jquery.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="http://twitter.github.io/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+<!--
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+-->
+  </body>
+</html>

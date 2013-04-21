@@ -1,0 +1,16 @@
+{
+    "name": "servergrove/logstash-summarizer",
+    "description": "Silex application to Summarize Logstash events",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Pablo Godel",
+            "email": "pgodel@gmail.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "1.0.*@dev",
+        "getme/mongodb-silex-provider": "dev-master",
+        "twig/twig": ">=1.8,<2.0-dev"
+    }
+}
