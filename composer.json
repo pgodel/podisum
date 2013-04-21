@@ -1,5 +1,5 @@
 {
-    "name": "servergrove/logstash-summarizer",
+    "name": "pgodel/podisum",
     "description": "Silex application to Summarize Logstash events",
     "minimum-stability": "dev",
     "authors": [
