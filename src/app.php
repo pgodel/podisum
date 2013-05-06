@@ -75,99 +75,20 @@ $app->post('/collect', function (Request $request) use ($app) {
 
     $mongo = $app['mongodb.client'];
 
+    $config = \Symfony\Component\Yaml\Yaml::parse('../config/podisum.yml');
+
     $c = $request->getContent();
 
     $data = json_decode($c, true);
     if ($data) {
-        $data['metric'] = $request->headers->get('x-metric');
-        $data['ttl'] = $request->headers->get('x-ttl');
-        $data['summaries'] = $request->headers->get('x-summaries');
-
-        $now = new \MongoDate();
-
-        $collection = $mongo->summarizer->messages;
-        $collection->ensureIndex(
-            'cts', array('expireAfterSeconds' => $data['ttl'])
+        $podisum = new \Podisum($mongo, $config);
+        $podisum->ensureIndexes();
+        $podisum->insertMetric(
+            $data,
+            $request->headers->get('x-metric'),
+            $request->headers->get('x-ttl'),
+            $request->headers->get('x-summaries')
         );
-
-        $doc = array(
-            'cts' => $now,
-            'data' => $data,
-        );
-
-        $collection->insert($doc);
-
-        $summaries = explode(',', $data['summaries']);
-
-        list($metricName, $fieldsStr) = explode('|', $data['metric']);
-        $fields = explode(',', $fieldsStr);
-        $metricName = str_replace('.', '_', $metricName);
-
-        foreach ($summaries as $sm) {
-            $collection = $mongo->summarizer->selectCollection('s'.$sm.'_' . $metricName);
-
-            $t = time();
-            $ttl = $t - $t % $sm;
-
-            foreach ($fields as $field) {
-                if (empty($field) || !isset($data['@fields'])) {
-                    continue;
-                }
-                $criteria = array(
-                    'field' => $data['@fields'][$field][0],
-                    'ttl' => $ttl,
-                );
-
-                $docs = $collection->find($criteria)->count();
-
-                if (!$docs) {
-                    $collection->ensureIndex(
-                        array('cts' => 1), array('expireAfterSeconds' => (int) $sm)
-                    );
-
-                    $collection->ensureIndex(
-                        array(
-                            'count' => -1,
-                        )
-                    );
-
-                    $collection->ensureIndex(
-                        array(
-                            'field' => 1,
-                            'ttl' => 1,
-                        )
-                    );
-
-                    $values = array(
-                        'cts' => $now,
-                        'field' => $data['@fields'][$field][0],
-                        'ttl' => $ttl,
-                    );
-                } else {
-                    $values = null;
-                }
-
-                $counters = array(
-                    'counter' => 1,
-                );
-
-                $docData = array(
-                    '$inc' => $counters,
-                );
-                if ($values) {
-                    $docData['$set'] = $values;
-                }
-
-                $collection->update($criteria, $docData,
-                    array(
-                        'upsert' => true,
-                    ));
-
-            }
-
-
-        }
-
     }
 
     return 'collect';

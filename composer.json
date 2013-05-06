@@ -8,9 +8,16 @@
             "email": "pgodel@gmail.com"
         }
     ],
+    "autoload":{
+        "psr-0":{
+            "":"src/"
+        }
+    },
     "require": {
         "silex/silex": "1.0.*@dev",
         "getme/mongodb-silex-provider": "dev-master",
-        "twig/twig": ">=1.8,<2.0-dev"
+        "twig/twig": ">=1.8,<2.0-dev",
+        "predis/predis": "dev-master",
+        "symfony/yaml": "v2.2.1"
     }
 }
