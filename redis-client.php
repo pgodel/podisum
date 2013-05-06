@@ -35,24 +35,23 @@ while(1) {
 
     $data = json_decode($value, true);
     if (!$data) {
+        echo "Invalid json string ".$value;
         continue;
     }
 
     $process = false;
     foreach($data['@tags'] as $tag) {
-        if (null !== $cfg = $podisum->getConfigForTag($tag)) {
+        $cfgs = $podisum->getConfigForTag($tag);
+        foreach($cfgs as $cfg) {
+            $podisum->insertMetric($data, $cfg['metric'], $cfg['ttl'], $cfg['summaries']);
+            $processed++;
+            echo $processed. " - processing ".$cfg['metric']."\n";
             $process = true;
-            break;
         }
     }
-
     if (!$process) {
-        continue;
+        echo "No config for tags ".implode(", ", $data['@tags']);
     }
-
-    $podisum->insertMetric($data, $cfg['metric'], $cfg['ttl'], $cfg['summaries']);
-    $processed++;
-    echo $processed. " - processing ".$cfg['metric']."\n";
 }
 
 

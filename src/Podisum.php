@@ -18,13 +18,15 @@ class Podisum {
 
     public function getConfigForTag($tag)
     {
+        $cfgs = array();
+
         foreach($this->config['metrics'] as $cfg) {
             if ($cfg['tag'] == $tag) {
-                return $cfg;
+                $cfgs[] = $cfg;
             }
         }
 
-        return null;
+        return $cfgs;
     }
 
 
