@@ -22,7 +22,48 @@ Then, configure your virtual host to to the web directory.
 Configuration
 -------------
 
-Podisum creates summaries of data sent from Logstash in MongoDB. For this, you need to add a http output to your logstash configuration.
+Podisum creates summaries of data sent from Logstash in MongoDB. For this, you can send events from Logstash using the redis (recommended) or http outputs.
+
+A config/podisum.yml configuration file was recently introduced. You can define your summaries in this file so sending HTTP headers is no longer necessary.
+
+	mongo: mongodb://localhost:27017
+	mongo_db: podisum
+	redis: tcp://localhost:6379
+	redis_key: podisum
+	default_ttl: 86400
+	default_sleep: 10
+	metrics:
+	  -
+		tag: dovecot_login
+		metric: "dovecot.login|login"
+		ttl: 86400
+		summaries: "300,3600,86400"
+
+This configuration will match any events with the 'dovecot_login' tag and create a metric 'dovecot_login' using the login field.
+
+
+Using redis output
+-----------------
+
+Example:
+
+  	output {
+		redis {
+			host => "localhost"
+			data_type => "list"
+			key => "podisum"
+			tags => ["podisum"]
+		}
+	}
+
+This example will send any events with the tag podisum to the redis server with the 'podisum' key.
+
+Start the redis client:
+
+	$ php redis-client.php
+
+Using http output
+-----------------
 
 Example:
 
@@ -40,6 +81,9 @@ of entries with the email field. This way you can count how many instances of "f
 3600 secs (1 hour) and 86400 (1 day). It requires 'email' to be a field in the logstash message.
 
 You can add multiple http outputs for different summaries.
+
+Web UI
+------
 
 To view the summaries, go to http://podisum.dev/
 
