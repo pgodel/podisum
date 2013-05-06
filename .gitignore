@@ -9,5 +9,6 @@ web/uploads/*
 web/bundles/*
 
 # Configuration files
+config/podisum.yml
 app/config/parameters.ini
 app/config/parameters.yml

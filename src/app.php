@@ -22,8 +22,9 @@ $app->get('/', function ($name = '') use ($app) {
 
     $mongo = $app['mongodb.client'];
 
-
-    $collections = $mongo->summarizer->listCollections();
+    $podisum = new \Podisum($mongo, \Symfony\Component\Yaml\Yaml::parse('../config/podisum.yml'));
+    $db = $mongo->selectDB($podisum->getConfig('mongo_db', 'podisum'));
+    $collections = $db->listCollections();
 
     $str = '';
 

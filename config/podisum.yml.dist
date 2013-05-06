@@ -3,6 +3,7 @@ mongo_db: podisum
 redis: tcp://localhost:6379
 redis_key: podisum
 default_ttl: 86400
+default_sleep: 10
 metrics:
   -
     tag: dovecot_login

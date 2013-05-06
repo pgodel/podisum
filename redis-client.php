@@ -23,11 +23,13 @@ $len = $redis->llen($config['redis_key']);
 echo "Found $len entries waiting on list...\n";
 
 $processed = 0;
+$sleep = $podisum->getConfig('default_sleep', 1);
+
 while(1) {
     $value = $redis->rpop($config['redis_key']);
     if (null === $value) {
         echo "no more data, sleeping...\n";
-        sleep(1);
+        sleep($sleep);
         continue;
     }
 

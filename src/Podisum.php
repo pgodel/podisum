@@ -11,7 +11,7 @@ class Podisum {
         $this->config = $config;
     }
 
-    protected function getConfig($key, $default = null)
+    public function getConfig($key, $default = null)
     {
         return isset($this->config[$key]) ? $this->config[$key] : $default;
     }
