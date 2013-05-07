@@ -18,6 +18,14 @@
         "getme/mongodb-silex-provider": "dev-master",
         "twig/twig": ">=1.8,<2.0-dev",
         "predis/predis": "dev-master",
+        "symfony/serializer": "2.3.*@dev",
+        "tobiassjosten/responsible-service-provider": "dev-master",
         "symfony/yaml": "v2.2.1"
-    }
+    },
+    "repositories": [
+           {
+               "type": "vcs",
+               "url":  "git@github.com:pgodel/ResponsibleServiceProvider.git"
+           }
+       ]
 }

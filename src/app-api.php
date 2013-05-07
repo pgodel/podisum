@@ -33,5 +33,7 @@ $app->get('/api/collections', function () use ($app) {
 
     }
 
+    return $data;
+
     return json_encode($data);
 });

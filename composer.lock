@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4475ae3d4ae0bbcb2e45c370f82dd623",
+    "hash": "0d73e1ccd9d8b049c12ab221d089ce93",
     "packages": [
         {
             "name": "getme/mongodb-silex-provider",
@@ -550,6 +550,53 @@
             "time": "2013-05-05 17:11:25"
         },
         {
+            "name": "symfony/serializer",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Serializer",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Serializer.git",
+                "reference": "v2.3.0-BETA1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Serializer/zipball/v2.3.0-BETA1",
+                "reference": "v2.3.0-BETA1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Serializer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Serializer Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-04-21 12:26:17"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v2.2.1",
             "target-dir": "Symfony/Component/Yaml",
@@ -595,6 +642,53 @@
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
             "time": "2013-03-23 07:49:54"
+        },
+        {
+            "name": "tobiassjosten/responsible-service-provider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pgodel/ResponsibleServiceProvider.git",
+                "reference": "3135ca034c8c8fccb2a61351407c9ebf9491410a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pgodel/ResponsibleServiceProvider/zipball/3135ca034c8c8fccb2a61351407c9ebf9491410a",
+                "reference": "3135ca034c8c8fccb2a61351407c9ebf9491410a",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": "1.0.*@dev",
+                "symfony/serializer": ">=2.2,<2.4-dev@dev"
+            },
+            "require-dev": {
+                "symfony/browser-kit": ">=2.3,<2.4-dev@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Tobiassjosten\\Silex": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Sjösten",
+                    "email": "tobias@tobiassjosten.net",
+                    "homepage": "http://vvv.tobiassjosten.net/"
+                }
+            ],
+            "description": "A Silex ServiceProvider for automagic response formatting.",
+            "keywords": [
+                "service-provider",
+                "silex"
+            ],
+            "support": {
+                "source": "https://github.com/pgodel/ResponsibleServiceProvider/tree/master"
+            },
+            "time": "2013-05-07 14:13:57"
         },
         {
             "name": "twig/twig",
@@ -656,7 +750,9 @@
     "stability-flags": {
         "silex/silex": 20,
         "getme/mongodb-silex-provider": 20,
-        "predis/predis": 20
+        "predis/predis": 20,
+        "symfony/serializer": 20,
+        "tobiassjosten/responsible-service-provider": 20
     },
     "platform": [
 
