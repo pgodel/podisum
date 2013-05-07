@@ -2,34 +2,9 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Tobiassjosten\Silex\ResponsibleServiceProvider;
 
-$mongoClass = class_exists('MongoClient') ? 'MongoClient' : 'Mongo';
+include 'app-init.php';
 
-$app['podisum_cfg'] = $app->share(function()
-{
-    return \Symfony\Component\Yaml\Yaml::parse('../config/podisum.yml');
-});
-
-$app->register(new Sfk\Silex\Provider\MongoDBServiceProvider(), array(
-    'mongodb.server' => $app['podisum_cfg']['mongo'],
-    'mongodb.options' => array(),
-    'mongodb.client_class' => $mongoClass,
-));
-
-$app->register(new ResponsibleServiceProvider());
-
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../resources/views',
-));
-
-
-$app['podisum'] = function($app)
-{
-    return new \Podisum($app['mongodb.client'], $app['podisum_cfg']);
-};
-
-include 'app-api.php';
 
 $app->get('/view/{name}', function ($name) use ($app) {
     return 'view';
@@ -74,7 +49,8 @@ $app->get('/', function ($name = '') use ($app) {
             $data['collections'][$shortName]['summaries'][$cname]['total'] += $entry['counter'];
             $i++;
         }
-        $data['collections'][$shortName]['summaries'][$cname]['avg'] = $data['collections'][$shortName]['summaries'][$cname]['total'] / $i;
+
+        $data['collections'][$shortName]['summaries'][$cname]['avg'] = $i ? $data['collections'][$shortName]['summaries'][$cname]['total'] / $i  :0;
         $data['collections'][$shortName]['summaries'][$cname]['avgm'] = $parts[0] < 1 ? 0 : $data['collections'][$shortName]['summaries'][$cname]['total'] / ($parts[0] / 60);
 
         if (!$selectedCollection) {
