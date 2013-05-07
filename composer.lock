@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0d73e1ccd9d8b049c12ab221d089ce93",
+    "hash": "b58fdaa4036e0433b3147b38c815cef5",
     "packages": [
         {
             "name": "getme/mongodb-silex-provider",
@@ -181,16 +181,16 @@
         },
         {
             "name": "silex/silex",
-            "version": "1.0.x-dev",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "b5d9bad2adf42f82f58e3eda3908aabada67a77e"
+                "reference": "v1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/b5d9bad2adf42f82f58e3eda3908aabada67a77e",
-                "reference": "b5d9bad2adf42f82f58e3eda3908aabada67a77e",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/v1.0.0",
+                "reference": "v1.0.0",
                 "shasum": ""
             },
             "require": {
@@ -259,7 +259,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-05-04 16:24:16"
+            "time": "2013-05-03 16:49:57"
         },
         {
             "name": "symfony/debug",
@@ -696,12 +696,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "b8a8701b6c2957a365b8596f55684679627d7cfb"
+                "reference": "4d90a5008d2c2cc30f5e5c8622e979674178bf6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/b8a8701b6c2957a365b8596f55684679627d7cfb",
-                "reference": "b8a8701b6c2957a365b8596f55684679627d7cfb",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/4d90a5008d2c2cc30f5e5c8622e979674178bf6c",
+                "reference": "4d90a5008d2c2cc30f5e5c8622e979674178bf6c",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +737,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-05-06 06:36:47"
+            "time": "2013-05-07 18:59:51"
         }
     ],
     "packages-dev": [
@@ -748,7 +748,6 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "silex/silex": 20,
         "getme/mongodb-silex-provider": 20,
         "predis/predis": 20,
         "symfony/serializer": 20,

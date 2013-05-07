@@ -14,9 +14,9 @@
         }
     },
     "require": {
-        "silex/silex": "1.0.*@dev",
+        "silex/silex": "1.0.0",
         "getme/mongodb-silex-provider": "dev-master",
-        "twig/twig": ">=1.8,<2.0-dev",
+        "twig/twig": "1.*",
         "predis/predis": "dev-master",
         "symfony/serializer": "2.3.*@dev",
         "tobiassjosten/responsible-service-provider": "dev-master",
