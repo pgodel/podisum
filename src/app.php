@@ -10,7 +10,17 @@ $app->get('/view/{name}', function ($name) use ($app) {
     return 'view';
 });
 
-$app->get('/', function ($name = '') use ($app) {
+$app->get('/', function () use ($app) {
+    return $app['twig']->render('index.html.twig', array(
+    ));
+});
+
+$app->get('/angularjs', function ($name = '') use ($app) {
+    return $app['twig']->render('index_angular.html.twig', array(
+    ));
+});
+
+$app->get('/twig', function ($name = '') use ($app) {
 
     $mongo = $app['mongodb.client'];
     $podisum = $app['podisum'];
@@ -60,7 +70,7 @@ $app->get('/', function ($name = '') use ($app) {
 
     //$coll = $mongo->summarizer->selectCollection($selectedCollection);
 
-    return $app['twig']->render('index_angular.html.twig', array(
+    return $app['twig']->render('index_twig.html.twig', array(
         'data' => $data,
     ));
 });

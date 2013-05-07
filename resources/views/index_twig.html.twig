@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+      <!-- Example row of columns -->
+      <div class="row">
+           {% for collection in data['collections'] %}
+
+        <div class="span3 well">
+          <h4>{{ collection['name'] }}</h4>
+
+            <div class="tabbable"> <!-- Only required for left/right tabs -->
+              <ul class="nav nav-tabs">
+              {% for summaries in collection['summaries'] %}
+                <li class="{{ loop.index == 1 ? 'active' : '' }}"><a href="#{{ collection['name'] }}_tab{{ summaries['ttl'] }}" data-toggle="tab">{{ summaries['ttl'] }}</a></li>
+              {% endfor %}
+              </ul>
+              <div class="tab-content">
+              {% for summaries in collection['summaries'] %}
+                <div class="tab-pane {{ loop.index == 1 ? 'active' : '' }}" id="{{ collection['name'] }}_tab{{ summaries['ttl'] }}">
+                    <ul class="unstyled" style="font-size: .8em">
+                        {% for entry in summaries['entries'] %}
+                        <li><span class="badge badge-{{ entry['counter'] > summaries['avg'] ? 'important' : 'info' }}"><small>{{ entry['counter'] }}</small></span> <div title="{{ entry['field'] }}" style="display: inline-block; max-width: 17em; overflow: hidden">{{ entry['field'] }}</div>
+                            <span style="float: right" class="muted">{{ (entry['counter'] / (summaries['ttl'] / 60))|number_format(2) }}/min</span></li>
+                        {% endfor %}
+                    </ul>
+                    <div>
+                        Avg: <span class="badge badge-inverse">{{ summaries['avg']|number_format(2) }}</span>
+                        <span style="float: right">Entries/min: <span class="badge badge-inverse">{{ summaries['avgm']|number_format(2) }}</span></span>
+                    </div>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+        </div>
+          {% endfor %}
+
+      </div>
+
+      <hr>
+
+{% endblock %}
