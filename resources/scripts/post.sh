@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL=http://logstash-summ.dev/collect
+URL=http://podisum.dev/collect
 TTL=300
 SUMMARIES="300,3600,86400"
 METRIC="test.emails|email"
