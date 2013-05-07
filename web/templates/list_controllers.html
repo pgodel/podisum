@@ -1,0 +1,32 @@
+<div ng-show="loading" class="alert">Loading....</div>
+
+<div class="row" >
+    <div ng-repeat="c in collections" class="span3 well">
+        <h4>{{c.name}}</h4>
+
+        <tabs>
+                <pane ng-repeat="s in c.summaries" heading="{{s.ttl}}" active="$first">
+
+                    <ul class="unstyled" style="font-size: .8em">
+                        <li ng-repeat="entry in s.entries">
+                            <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
+                                <small>{{ entry.counter }}</small>
+                            </span>
+                            <div title="{{ entry['field'] }}" style="display: inline-block; max-width: 16em; overflow: hidden">
+                                {{ entry['field'] }}
+                            </div>
+                            <span style="float: right" class="muted">
+                                {{ (entry.counter / (s.ttl / 60))|number:2 }}/min
+                            </span>
+                        </li>
+                    </ul>
+                    <div>
+                        Avg: <span class="badge badge-inverse">{{ s.avg|number:2 }}</span>
+                        <span style="float: right">Entries/min: <span class="badge badge-inverse">{{ s.avgm|number:2 }}</span></span>
+                    </div>
+
+                </pane>
+        </tabs>
+    </div>
+</div>
+
