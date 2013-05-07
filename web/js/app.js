@@ -34,7 +34,6 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
 
     $scope.autoReload = function() {
         $scope.loadCollections();
-        return;
         $timeout( function() {
             $scope.autoReload();
         }, 10000);
