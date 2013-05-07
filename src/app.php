@@ -14,6 +14,13 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../resources/views',
 ));
 
+$app['podisum'] = function($app)
+{
+    return new \Podisum($app['mongodb.client'], \Symfony\Component\Yaml\Yaml::parse('../config/podisum.yml'));
+};
+
+include 'app-api.php';
+
 $app->get('/view/{name}', function ($name) use ($app) {
     return 'view';
 });
@@ -21,8 +28,8 @@ $app->get('/view/{name}', function ($name) use ($app) {
 $app->get('/', function ($name = '') use ($app) {
 
     $mongo = $app['mongodb.client'];
+    $podisum = $app['podisum'];
 
-    $podisum = new \Podisum($mongo, \Symfony\Component\Yaml\Yaml::parse('../config/podisum.yml'));
     $db = $mongo->selectDB($podisum->getConfig('mongo_db', 'podisum'));
     $collections = $db->listCollections();
 
@@ -67,22 +74,18 @@ $app->get('/', function ($name = '') use ($app) {
 
     //$coll = $mongo->summarizer->selectCollection($selectedCollection);
 
-    return $app['twig']->render('index.html.twig', array(
+    return $app['twig']->render('index_angular.html.twig', array(
         'data' => $data,
     ));
 });
 
 $app->post('/collect', function (Request $request) use ($app) {
-
-    $mongo = $app['mongodb.client'];
-
-    $config = \Symfony\Component\Yaml\Yaml::parse('../config/podisum.yml');
-
     $c = $request->getContent();
 
     $data = json_decode($c, true);
     if ($data) {
-        $podisum = new \Podisum($mongo, $config);
+        $podisum = $app['podisum'];
+
         $podisum->ensureIndexes();
         $podisum->insertMetric(
             $data,
