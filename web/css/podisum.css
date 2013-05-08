@@ -1,0 +1,15 @@
+.alert-loading {
+    position: absolute; z-index: 2000; right: 10px; top: 5px;
+}
+
+ul.entry {
+    font-size: .8em;
+}
+
+.entry-field {
+    display: inline-block; max-width: 16em; overflow: hidden;
+}
+
+.float-right {
+    float: right;
+}
