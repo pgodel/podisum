@@ -23,12 +23,18 @@
                         </li>
                     </ul>
                     <div>
-                        Avg: <span class="badge badge-inverse">{{ s.avg|number:2 }}</span>
-                        <i ng-show="s.avgUp" class="icon-arrow-up"></i>
-                        <i ng-show="s.avgDown" class="icon-arrow-down"></i>
-                        <span class="float-right">Entries/min: <span class="badge badge-inverse">{{ s.avgm|number:2 }}</span>
-                            <i ng-show="s.avgmUp" class="icon-arrow-up"></i>
-                            <i ng-show="s.avgmDown" class="icon-arrow-down"></i>
+                        Avg:
+                        <span class="badge badge-inverse">
+                        <i ng-show="s.avgUp" class="icon-arrow-up icon-white"></i>
+                        <i ng-show="s.avgDown" class="icon-arrow-down icon-white"></i>
+                        {{ s.avg|number:2 }}
+                    </span>
+                        <span class="float-right">Entries/min:
+                            <span class="badge badge-inverse">
+                                <i ng-show="s.avgmUp" class="icon-arrow-up icon-white"></i>
+                                <i ng-show="s.avgmDown" class="icon-arrow-down icon-white"></i>
+                                {{ s.avgm|number:2 }}
+                        </span>
                         </span>
                     </div>
 
