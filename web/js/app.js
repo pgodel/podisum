@@ -1,36 +1,35 @@
 var podisumSvc = angular.module('podisumSvc', []);
-podisumSvc.factory('podisumSvc', function() {
-  var s = {
-      rates: [
-          {delay: 1, label: '1s'},
-          {delay: 5, label: '5s'},
-          {delay: 10, label: '10s'},
-          {delay: 60, label: '1m'},
-          {delay: 3600, label: '1h'}
-      ],
-      autoRefresh: true
-  };
+podisumSvc.factory('podisumSvc', function () {
+    var s = {
+        rates: [
+            {delay: 1, label: '1s'},
+            {delay: 5, label: '5s'},
+            {delay: 10, label: '10s'},
+            {delay: 60, label: '1m'},
+            {delay: 3600, label: '1h'}
+        ],
+        autoRefresh: true
+    };
     s.rate = s.rates[2];
-
     return s;
 });
 
 
 var podisumApp = angular.module('podisumApp',
-                [
-                    'collectionServices',
-                    'ngResource',
-                    'podisumSvc',
-                    'ui.bootstrap'
-                ]).config(function ($routeProvider, $httpProvider, $interpolateProvider) {
+        [
+            'collectionServices',
+            'ngResource',
+            'podisumSvc',
+            'ui.bootstrap'
+        ]).config(function ($routeProvider, $httpProvider, $interpolateProvider) {
 
 //            $interpolateProvider.startSymbol('[[').endSymbol(']]')
 
-            $routeProvider.
-                    when("/list", {controller: 'ListCollectionsCtrl', templateUrl: "templates/list_controllers.html"}).
-                    otherwise({redirectTo: "/list"});
+        $routeProvider.
+            when("/list", {controller: 'ListCollectionsCtrl', templateUrl: "templates/list_controllers.html"}).
+            otherwise({redirectTo: "/list"});
 
-        });
+    });
 
 /* controllers */
 
@@ -38,7 +37,7 @@ var podisumApp = angular.module('podisumApp',
 podisumApp.controller('RefreshCtrl', ['$scope', '$rootScope', 'podisumSvc', function ($scope, $rootScope, podisumSvc) {
     $scope.refresh = podisumSvc;
     $scope.rates = podisumSvc.rates;
-    $scope.change = function() {
+    $scope.change = function () {
         $rootScope.$broadcast('refreshUpdated', {enabled: $scope.refresh.autoRefresh, rate: $scope.refresh.rate});
     }
 
@@ -52,7 +51,7 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
     $scope.loading = true;
     $scope.collections = [];
 
-    $scope.getCollectionByName = function(name) {
+    $scope.getCollectionByName = function (name) {
         if ($scope.collections.length == 0) {
             return null;
         }
@@ -64,7 +63,7 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
         return null;
     }
 
-    $scope.getSummaryByName = function(summaries, name) {
+    $scope.getSummaryByName = function (summaries, name) {
         for (var index in summaries) {
             if (index == name) {
                 return summaries[index];
@@ -73,7 +72,7 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
         return null;
     }
 
-    $scope.getEntryByField = function(entries, val) {
+    $scope.getEntryByField = function (entries, val) {
         for (var index in entries) {
             if (entries[index].field == val) {
                 return entries[index];
@@ -82,7 +81,7 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
         return null;
     }
 
-    $scope.$on('refreshUpdated', function(e, data) {
+    $scope.$on('refreshUpdated', function (e, data) {
         $timeout.cancel(timer);
         if (podisumSvc.autoRefresh) {
             $scope.autoReload();
@@ -90,9 +89,9 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
     });
 
 
-    $scope.loadCollections = function() {
+    $scope.loadCollections = function () {
         $scope.loading = true;
-        data = Collection.query(function() {
+        data = Collection.query(function () {
             $scope.loading = false;
 
             if ($scope.collections.length == 0) {
@@ -100,7 +99,7 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
                 return;
             }
 
-            angular.forEach(data, function(collection) {
+            angular.forEach(data, function (collection) {
                 if (!collection) {
                     return;
                 }
@@ -109,7 +108,7 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
                     $scope.collections.push(coll);
                     return;
                 }
-                angular.forEach(collection.summaries, function(summary, index) {
+                angular.forEach(collection.summaries, function (summary, index) {
                     var summ = $scope.getSummaryByName(coll.summaries, index);
                     if (null === summ) {
                         coll.summaries.push(summ);
@@ -126,7 +125,7 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
                     summ.avgmDown = summ.avgm > summary.avgm;
                     summ.avgm = summary.avgm;
 
-                    angular.forEach(summary.entries, function(entry) {
+                    angular.forEach(summary.entries, function (entry) {
                         var e = $scope.getEntryByField(summ.entries, entry.field);
                         if (null === e) {
                             entry.up = true;
@@ -142,10 +141,10 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
                     });
 
                     // remove non-existing entries
-                    angular.forEach(summ.entries, function(entry, index) {
+                    angular.forEach(summ.entries, function (entry, index) {
                         var e = $scope.getEntryByField(summary.entries, entry.field);
                         if (null === e) {
-                            summ.entries.splice(index,1);
+                            summ.entries.splice(index, 1);
                         }
                     });
                 });
@@ -154,17 +153,17 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
 
     }
 
-    $scope.getEntryClass = function(counter, avg) {
+    $scope.getEntryClass = function (counter, avg) {
         return counter > avg ? 'badge-important' : 'badge-info';
     }
 
-    $scope.autoReload = function() {
+    $scope.autoReload = function () {
         if (!podisumSvc.autoRefresh) {
             return;
         }
 
         $scope.loadCollections();
-        timer = $timeout( function() {
+        timer = $timeout(function () {
             $scope.autoReload();
         }, podisumSvc.rate.delay * 1000);
 
@@ -176,8 +175,8 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
 
 
 angular.module('collectionServices', ['ngResource']).
-        factory('Collection', function ($resource) {
-            return $resource('/api/collections/:collectionId', {}, {
-                query: {method: 'GET', params: {collectionId: ''}, isArray: true}
-            });
+    factory('Collection', function ($resource) {
+        return $resource('/api/collections/:collectionId', {}, {
+            query: {method: 'GET', params: {collectionId: ''}, isArray: true}
         });
+    });

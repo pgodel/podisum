@@ -13,15 +13,8 @@
           <li><a target="_blank" href="https://github.com/pgodel/podisum">About</a></li>
 
         </ul>
-          <span  style="float: right; color: white; margin-top: 8px" ng-controller="RefreshCtrl">
-              <label class="checkbox" style="display: inline; line-height: 2em; margin-right: 10px">
-                  <input style="margin-left: 0; margin-top: .6em" type="checkbox" ng-model="refresh.autoRefresh" ng-change="change()" />auto-refresh</label>
-              <select style="float: right; display: inline; width: 70px" ng-model="refresh.rate"
-                      ng-change="change()"
-                      ng-options="r.label for r in rates">
-              </select>
-          </span>
       </div><!--/.nav-collapse -->
+      {% include "_autorefresh.html.twig" %}
     </div>
   </div>
 </div>
