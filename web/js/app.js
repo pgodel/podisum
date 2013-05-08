@@ -1,7 +1,26 @@
+var podisumSvc = angular.module('podisumSvc', []);
+podisumSvc.factory('podisumSvc', function() {
+  var s = {
+      rates: [
+          {delay: 1, label: '1s'},
+          {delay: 5, label: '5s'},
+          {delay: 10, label: '10s'},
+          {delay: 60, label: '1m'},
+          {delay: 3600, label: '1h'}
+      ],
+      autoRefresh: true
+  };
+    s.rate = s.rates[2];
+
+    return s;
+});
+
+
 var podisumApp = angular.module('podisumApp',
                 [
                     'collectionServices',
                     'ngResource',
+                    'podisumSvc',
                     'ui.bootstrap'
                 ]).config(function ($routeProvider, $httpProvider, $interpolateProvider) {
 
@@ -16,7 +35,20 @@ var podisumApp = angular.module('podisumApp',
 /* controllers */
 
 
-podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout', function ($scope, Collection, $timeout) {
+podisumApp.controller('RefreshCtrl', ['$scope', '$rootScope', 'podisumSvc', function ($scope, $rootScope, podisumSvc) {
+    $scope.refresh = podisumSvc;
+    $scope.rates = podisumSvc.rates;
+    $scope.change = function() {
+        $rootScope.$broadcast('refreshUpdated', {enabled: $scope.refresh.autoRefresh, rate: $scope.refresh.rate});
+    }
+
+
+}]);
+
+podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout', 'podisumSvc', function ($scope, Collection, $timeout, podisumSvc) {
+    var timer;
+    var data;
+
     $scope.loading = true;
     $scope.collections = [];
 
@@ -50,7 +82,13 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
         return null;
     }
 
-    var data;
+    $scope.$on('refreshUpdated', function(e, data) {
+        $timeout.cancel(timer);
+        if (podisumSvc.autoRefresh) {
+            $scope.autoReload();
+        }
+    });
+
 
     $scope.loadCollections = function() {
         $scope.loading = true;
@@ -121,10 +159,14 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
     }
 
     $scope.autoReload = function() {
+        if (!podisumSvc.autoRefresh) {
+            return;
+        }
+
         $scope.loadCollections();
-        $timeout( function() {
+        timer = $timeout( function() {
             $scope.autoReload();
-        }, 10000);
+        }, podisumSvc.rate.delay * 1000);
 
     }
 
