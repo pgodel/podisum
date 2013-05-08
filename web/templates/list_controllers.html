@@ -8,7 +8,7 @@
                 <pane ng-repeat="s in c.summaries" heading="{{s.ttl}}" active="$first">
 
                     <ul class="unstyled" style="font-size: .8em">
-                        <li ng-repeat="entry in s.entries | orderBy:counter:reverse">
+                        <li ng-repeat="entry in s.entries | limitTo:20 | orderBy:'counter':true">
                             <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
                                 <small>{{ entry.counter }}</small>
                             </span>
@@ -18,11 +18,18 @@
                             <span style="float: right" class="muted">
                                 {{ (entry.counter / (s.ttl / 60))|number:2 }}/min
                             </span>
+
+                            <i style="float: right" ng-show="entry.up" class="icon-arrow-up"></i>
                         </li>
                     </ul>
                     <div>
                         Avg: <span class="badge badge-inverse">{{ s.avg|number:2 }}</span>
-                        <span style="float: right">Entries/min: <span class="badge badge-inverse">{{ s.avgm|number:2 }}</span></span>
+                        <i ng-show="s.avgUp" class="icon-arrow-up"></i>
+                        <i ng-show="s.avgDown" class="icon-arrow-down"></i>
+                        <span style="float: right">Entries/min: <span class="badge badge-inverse">{{ s.avgm|number:2 }}</span>
+                            <i ng-show="s.avgmUp" class="icon-arrow-up"></i>
+                            <i ng-show="s.avgmDown" class="icon-arrow-down"></i>
+                        </span>
                     </div>
 
                 </pane>
