@@ -13,3 +13,11 @@ ul.entry {
 .float-right {
     float: right;
 }
+
+.span3 {
+    margin-left: 10px;
+}
+
+.well {
+    padding: 10px;
+}
