@@ -20,10 +20,14 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
     $scope.loading = true;
     $scope.collections = [];
 
+
+    var data;
+
     $scope.loadCollections = function() {
         $scope.loading = true;
-        $scope.collections = Collection.query(function() {
+        data = Collection.query(function() {
             $scope.loading = false;
+            $scope.collections = data;
         });
 
     }

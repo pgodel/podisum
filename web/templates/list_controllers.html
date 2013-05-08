@@ -1,4 +1,4 @@
-<div ng-show="loading" class="alert">Loading....</div>
+<div ng-show="loading" class="alert" style="position: absolute; z-index: 2000; right: 10px; top: 5px;">Loading....</div>
 
 <div class="row" >
     <div ng-repeat="c in collections" class="span3 well">
@@ -8,7 +8,7 @@
                 <pane ng-repeat="s in c.summaries" heading="{{s.ttl}}" active="$first">
 
                     <ul class="unstyled" style="font-size: .8em">
-                        <li ng-repeat="entry in s.entries">
+                        <li ng-repeat="entry in s.entries | orderBy:counter:reverse">
                             <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
                                 <small>{{ entry.counter }}</small>
                             </span>
