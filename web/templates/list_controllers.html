@@ -1,4 +1,4 @@
-<div ng-show="loading" class="alert alert-loading">Loading....</div>
+<div ng-show="loading" class="alert alert-loading"><small>Loading....</small></div>
 
 <div class="row" >
     <div ng-repeat="c in collections" class="span3 well">
@@ -8,14 +8,12 @@
                 <pane ng-repeat="s in c.summaries" heading="{{s.ttl}}" active="$first">
 
                     <ul class="unstyled entry">
-                        <li ng-repeat="entry in s.entries | limitTo:20 | orderBy:'counter':true">
-                            <div class="entry-line">
-                                <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
-                                    <small>{{ entry.counter }}</small>
-                                </span>
-                                <div class="entry-field"  title="{{ entry['field'] }}" >
-                                    {{ entry['field'] }}
-                                </div>
+                        <li ng-repeat="entry in s.entries | limitTo:refresh.maxEntries | filter:refresh.search | orderBy:'counter':true">
+                            <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
+                                <small>{{ entry.counter }}</small>
+                            </span>
+                            <div class="entry-field" title="{{ entry['field'] }}" >
+                                {{ entry['field'] }}
                             </div>
                             <span class="float-right muted">
                                 {{ (entry.counter / (s.ttl / 60))|number:2 }}/min

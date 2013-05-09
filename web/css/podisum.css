@@ -1,5 +1,5 @@
 .alert-loading {
-    position: absolute; z-index: 2000; right: 10px; top: 5px;
+    position: absolute; z-index: 2000; left: 25em; top: 5px;
 }
 
 ul.entry {
@@ -16,4 +16,12 @@ ul.entry {
 
 .float-right {
     float: right;
+}
+
+.span3 {
+    margin-left: 10px;
+}
+
+.well {
+    padding: 10px;
 }

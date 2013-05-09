@@ -1,0 +1,11 @@
+<span  style="float: right; color: white; margin-top: 8px" ng-controller="RefreshCtrl">
+    <input placeholder="search" ng-model="refresh.search" type="text" style="width: 80px; float: left; margin-right: 20px">
+    <span># Entries</span><input ng-model="refresh.maxEntries" type="text" style="width: 30px;  margin-right: 20px; margin-left: 5px;">
+    <select style="display: inline; width: 70px" ng-model="refresh.rate"
+            ng-change="change()"
+            ng-options="r.label for r in rates">
+    </select>
+    <button type="button" style="margin-top: -10px" class="btn btn-info" ng-model="refresh.autoRefresh" ng-change="change()" btn-checkbox>
+           auto-refresh
+       </button>
+</span>
