@@ -15,12 +15,12 @@
                             <div class="entry-field" title="{{ entry['field'] }}" >
                                 {{ entry['field'] }}
                             </div>
-                            <span class="float-right muted">
+                            <span ng-hide="entry.added" class="float-right muted">
                                 {{ (entry.counter / (s.ttl / 60))|number:2 }}/min
                             </span>
+                            <span ng-show="entry.added" class="float-right label label-warning" style="margin-right: 2px;"><small>+{{entry.added}}</small></span>
 
                             <i ng-show="entry.up" class="float-right icon-arrow-up"></i>
-                            <span ng-show="entry.added" class="float-right label label-warning" style="margin-right: 2px;"><small>+{{entry.added}}</small></span>
                         </li>
                     </ul>
                     <div>
