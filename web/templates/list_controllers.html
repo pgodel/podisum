@@ -9,17 +9,20 @@
 
                     <ul class="unstyled entry">
                         <li ng-repeat="entry in s.entries | limitTo:20 | orderBy:'counter':true">
-                            <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
-                                <small>{{ entry.counter }}</small>
-                            </span>
-                            <div class="entry-field" title="{{ entry['field'] }}" >
-                                {{ entry['field'] }}
+                            <div class="entry-line">
+                                <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
+                                    <small>{{ entry.counter }}</small>
+                                </span>
+                                <div class="entry-field"  title="{{ entry['field'] }}" >
+                                    {{ entry['field'] }}
+                                </div>
                             </div>
                             <span class="float-right muted">
                                 {{ (entry.counter / (s.ttl / 60))|number:2 }}/min
                             </span>
 
                             <i ng-show="entry.up" class="float-right icon-arrow-up"></i>
+                            <span ng-show="entry.added" class="float-right label label-warning" style="margin-right: 2px;"><small>+{{entry.added}}</small></span>
                         </li>
                     </ul>
                     <div>

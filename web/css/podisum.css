@@ -6,8 +6,12 @@ ul.entry {
     font-size: .8em;
 }
 
+.entry-line {
+    display: inline-block; max-width: 18em; overflow: hidden;
+}
+
 .entry-field {
-    display: inline-block; max-width: 16em; overflow: hidden;
+    display: inline-block; max-width: 18em; overflow: hidden;
 }
 
 .float-right {

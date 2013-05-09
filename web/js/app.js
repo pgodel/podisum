@@ -95,11 +95,12 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
                             summ.entries.push(entry);
                             return;
                         }
+                        e.up = false;
                         if (e.counter < entry.counter) {
+                            e.added = entry.counter - e.counter;
                             e.counter = parseInt(entry.counter);
-                            e.up = true;
                         } else {
-                            e.up = false;
+                            e.added = 0;
                         }
                     });
 
