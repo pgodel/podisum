@@ -8,6 +8,7 @@ podisumSvc.factory('podisumSvc', function () {
             {delay: 60, label: '1m'},
             {delay: 3600, label: '1h'}
         ],
+        maxEntries: 20,
         autoRefresh: true
     };
     s.rate = s.rates[2];
@@ -50,6 +51,8 @@ podisumApp.controller('ListCollectionsCtrl', ['$scope', 'Collection', '$timeout'
 
     $scope.loading = true;
     $scope.collections = [];
+
+    $scope.refresh = podisumSvc;
 
     $scope.getCollectionByName = function (name) {
         if ($scope.collections.length == 0) {

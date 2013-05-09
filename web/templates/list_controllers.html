@@ -8,7 +8,7 @@
                 <pane ng-repeat="s in c.summaries" heading="{{s.ttl}}" active="$first">
 
                     <ul class="unstyled entry">
-                        <li ng-repeat="entry in s.entries | limitTo:20 | orderBy:'counter':true">
+                        <li ng-repeat="entry in s.entries | limitTo:refresh.maxEntries | filter:refresh.search | orderBy:'counter':true">
                             <span class="badge" ng-class="getEntryClass(entry.counter,s.avg)">
                                 <small>{{ entry.counter }}</small>
                             </span>
