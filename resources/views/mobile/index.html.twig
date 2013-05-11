@@ -1,0 +1,48 @@
+{% extends "mobile/layout.html.twig" %}
+
+{% block content %}
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <h1>Podisum</h1>
+        </div>
+        <div data-role="content">
+            <ul data-inset="true" data-role="listview">
+                {% for collection in data['collections'] %}
+                    <li><a href="#page-{{ collection['name'] }}">{{ collection['name'] }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% for collection in data['collections'] %}
+        <div data-role="page" id="page-{{ collection['name'] }}" data-add-back-btn="true">
+
+            <div data-role="header">
+                <h1>{{ collection['name'] }}</h1>
+            </div>
+            <div data-role="content">
+
+                <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+                    {% for summaries in collection['summaries'] %}
+
+                        <div data-role="collapsible">
+                            <h3>{{ summaries['ttl'] }}</h3>
+
+                            <div>
+                                <ul data-role="listview" data-count-theme="c" data-count-theme="b">
+                                    {% for entry in summaries['entries'] %}
+                                        <li>
+                                            {{ entry['field'] }}
+                                            <span class="ui-li-count">{{ entry['counter'] }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

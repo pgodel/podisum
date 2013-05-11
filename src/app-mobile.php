@@ -1,27 +1,6 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
-include 'app-init.php';
-include 'app-mobile.php';
-
-
-$app->get('/view/{name}', function ($name) use ($app) {
-    return 'view';
-});
-
-$app->get('/', function () use ($app) {
-    return $app['twig']->render('index.html.twig', array(
-    ));
-});
-
-$app->get('/angularjs', function ($name = '') use ($app) {
-    return $app['twig']->render('index_angular.html.twig', array(
-    ));
-});
-
-$app->get('/twig/{mode}', function ($mode = '') use ($app) {
+$app->get('/m', function ($name = '') use ($app) {
 
     $mongo = $app['mongodb.client'];
     $podisum = $app['podisum'];
@@ -71,27 +50,8 @@ $app->get('/twig/{mode}', function ($mode = '') use ($app) {
 
     //$coll = $mongo->summarizer->selectCollection($selectedCollection);
 
-    return $app['twig']->render( ($mode == 'mobile' ? 'mobile/index.html.twig' : 'index_twig.html.twig'), array(
+    return $app['twig']->render('mobile/index.html.twig', array(
         'data' => $data,
     ));
-})
-->value('mode', 'html');
-
-$app->post('/collect', function (Request $request) use ($app) {
-    $c = $request->getContent();
-
-    $data = json_decode($c, true);
-    if ($data) {
-        $podisum = $app['podisum'];
-
-        $podisum->ensureIndexes();
-        $podisum->insertMetric(
-            $data,
-            $request->headers->get('x-metric'),
-            $request->headers->get('x-ttl'),
-            $request->headers->get('x-summaries')
-        );
-    }
-
-    return 'collect';
 });
+
