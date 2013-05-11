@@ -1,6 +1,7 @@
 <?php
 
 use Tobiassjosten\Silex\ResponsibleServiceProvider;
+use Binfo\Silex\MobileDetectServiceProvider;
 
 $mongoClass = class_exists('MongoClient') ? 'MongoClient' : 'Mongo';
 
@@ -15,12 +16,12 @@ $app->register(new Sfk\Silex\Provider\MongoDBServiceProvider(), array(
     'mongodb.client_class' => $mongoClass,
 ));
 
+$app->register(new MobileDetectServiceProvider());
 $app->register(new ResponsibleServiceProvider());
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../resources/views',
 ));
-
 
 $app['podisum'] = function($app)
 {

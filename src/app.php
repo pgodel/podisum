@@ -71,6 +71,10 @@ $app->get('/twig/{mode}', function ($mode = '') use ($app) {
 
     //$coll = $mongo->summarizer->selectCollection($selectedCollection);
 
+    if ($mode == '' && $app["mobile_detect"]->isMobile()) {
+        $mode = 'mobile';
+    }
+
     return $app['twig']->render( ($mode == 'mobile' ? 'mobile/index.html.twig' : 'index_twig.html.twig'), array(
         'data' => $data,
     ));

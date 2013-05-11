@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b58fdaa4036e0433b3147b38c815cef5",
+    "hash": "a87c11f6178e872b30abd3dd55e1c8a9",
     "packages": [
         {
             "name": "getme/mongodb-silex-provider",
@@ -47,6 +47,104 @@
                 "silex"
             ],
             "time": "2012-12-14 10:14:52"
+        },
+        {
+            "name": "jbinfo/mobile-detect-service-provider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jbinfo/MobileDetectServiceProvider.git",
+                "reference": "v1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jbinfo/MobileDetectServiceProvider/zipball/v1.0.0",
+                "reference": "v1.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "mobiledetect/mobiledetectlib": ">=2.0,<3.0",
+                "php": ">=5.3.0",
+                "silex/silex": "1.0.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Binfo\\Silex": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lhassan Baazzi",
+                    "email": "baazzilhassan@gmail.com",
+                    "homepage": "http://jbinfo.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A mobile detect ServiceProvider for Silex, based on Mobile-Detect library.",
+            "homepage": "https://github.com/binfo/MobileDetectServiceProvider",
+            "keywords": [
+                "mobile",
+                "mobile detect",
+                "php mobile detect",
+                "silex"
+            ],
+            "time": "2013-04-02 16:17:41"
+        },
+        {
+            "name": "mobiledetect/mobiledetectlib",
+            "version": "2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/serbanghita/Mobile-Detect.git",
+                "reference": "2.6.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/2.6.0",
+                "reference": "2.6.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Mobile_Detect.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Serban Ghita",
+                    "email": "serbanghita@gmail.com",
+                    "homepage": "http://ghita.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
+            "homepage": "https://github.com/serbanghita/Mobile-Detect",
+            "keywords": [
+                "detect mobile devices",
+                "mobile",
+                "mobile detect",
+                "mobile detector",
+                "php mobile detect"
+            ],
+            "time": "2013-04-14 22:27:11"
         },
         {
             "name": "pimple/pimple",
@@ -268,12 +366,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "211f4a9307add219ea332a3f210752784744d32b"
+                "reference": "v2.3.0-BETA2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/211f4a9307add219ea332a3f210752784744d32b",
-                "reference": "211f4a9307add219ea332a3f210752784744d32b",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/v2.3.0-BETA2",
+                "reference": "v2.3.0-BETA2",
                 "shasum": ""
             },
             "require": {
@@ -324,12 +422,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "v2.3.0-BETA1"
+                "reference": "v2.3.0-BETA2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.3.0-BETA1",
-                "reference": "v2.3.0-BETA1",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.3.0-BETA2",
+                "reference": "v2.3.0-BETA2",
                 "shasum": ""
             },
             "require": {
@@ -378,12 +476,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "c31f02fecbc5f9836398afedcd254097f3a52869"
+                "reference": "v2.3.0-BETA2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/c31f02fecbc5f9836398afedcd254097f3a52869",
-                "reference": "c31f02fecbc5f9836398afedcd254097f3a52869",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/v2.3.0-BETA2",
+                "reference": "v2.3.0-BETA2",
                 "shasum": ""
             },
             "require": {
@@ -419,7 +517,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-06 08:11:45"
+            "time": "2013-05-10 06:00:03"
         },
         {
             "name": "symfony/http-kernel",
@@ -428,12 +526,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "b19c841dd543ad5275e8b74cbcafd07b7f6eb333"
+                "reference": "cf7a6f689816d570b55655848ff0c8f85f95539c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/b19c841dd543ad5275e8b74cbcafd07b7f6eb333",
-                "reference": "b19c841dd543ad5275e8b74cbcafd07b7f6eb333",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/cf7a6f689816d570b55655848ff0c8f85f95539c",
+                "reference": "cf7a6f689816d570b55655848ff0c8f85f95539c",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +587,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-06 20:03:44"
+            "time": "2013-05-10 19:19:19"
         },
         {
             "name": "symfony/routing",
@@ -498,12 +596,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing.git",
-                "reference": "7becabb1d949633a9d96590da08843b2f3700a8d"
+                "reference": "a35b6397d488af10a637bad62fd48d1749f7ecd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/7becabb1d949633a9d96590da08843b2f3700a8d",
-                "reference": "7becabb1d949633a9d96590da08843b2f3700a8d",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/a35b6397d488af10a637bad62fd48d1749f7ecd2",
+                "reference": "a35b6397d488af10a637bad62fd48d1749f7ecd2",
                 "shasum": ""
             },
             "require": {
@@ -547,7 +645,7 @@
             ],
             "description": "Symfony Routing Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-05 17:11:25"
+            "time": "2013-05-10 18:12:13"
         },
         {
             "name": "symfony/serializer",
@@ -556,12 +654,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Serializer.git",
-                "reference": "v2.3.0-BETA1"
+                "reference": "v2.3.0-BETA2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Serializer/zipball/v2.3.0-BETA1",
-                "reference": "v2.3.0-BETA1",
+                "url": "https://api.github.com/repos/symfony/Serializer/zipball/v2.3.0-BETA2",
+                "reference": "v2.3.0-BETA2",
                 "shasum": ""
             },
             "require": {
@@ -594,7 +692,7 @@
             ],
             "description": "Symfony Serializer Component",
             "homepage": "http://symfony.com",
-            "time": "2013-04-21 12:26:17"
+            "time": "2013-05-10 18:12:13"
         },
         {
             "name": "symfony/yaml",
@@ -696,12 +794,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "4d90a5008d2c2cc30f5e5c8622e979674178bf6c"
+                "reference": "4a49a3ae30ad2694057a63eccc3fb7b551b93e74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/4d90a5008d2c2cc30f5e5c8622e979674178bf6c",
-                "reference": "4d90a5008d2c2cc30f5e5c8622e979674178bf6c",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/4a49a3ae30ad2694057a63eccc3fb7b551b93e74",
+                "reference": "4a49a3ae30ad2694057a63eccc3fb7b551b93e74",
                 "shasum": ""
             },
             "require": {
@@ -737,7 +835,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-05-07 18:59:51"
+            "time": "2013-05-10 15:25:39"
         }
     ],
     "packages-dev": [
@@ -751,7 +849,8 @@
         "getme/mongodb-silex-provider": 20,
         "predis/predis": 20,
         "symfony/serializer": 20,
-        "tobiassjosten/responsible-service-provider": 20
+        "tobiassjosten/responsible-service-provider": 20,
+        "jbinfo/mobile-detect-service-provider": 20
     },
     "platform": [
 
