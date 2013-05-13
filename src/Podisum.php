@@ -83,8 +83,16 @@ class Podisum {
                 if (empty($field) || !isset($data['@fields'])) {
                     continue;
                 }
+
+                if (strpos($field, ';') !== false) {
+                    $keys = explode(';', $field);
+                    $value = $data['@fields'][$keys[0]][$keys[1]];
+                } else {
+                    $value = $data['@fields'][$field][0];
+                }
+
                 $criteria = array(
-                    'field' => $data['@fields'][$field][0],
+                    'field' => $value,
                     'ttl' => $ttl,
                 );
 
@@ -110,7 +118,7 @@ class Podisum {
 
                     $values = array(
                         'cts' => $now,
-                        'field' => $data['@fields'][$field][0],
+                        'field' => $value,
                         'ttl' => $ttl,
                     );
                 } else {
