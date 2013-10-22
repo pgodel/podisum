@@ -49,5 +49,5 @@ $app->get('/api/collections', function () use ($app) {
      //   unset($data['collections'][$shortName]['summaries'][$cname]['entries']);
     }
 
-    return $data['collections'];
+    return isset($data['collections']) ? $data['collections'] : array();
 });
