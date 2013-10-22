@@ -80,15 +80,18 @@ class Podisum {
             $ttl = $t - $t % $sm;
 
             foreach ($fields as $field) {
-                if (empty($field) || !isset($data['@fields'])) {
+
+                $fieldData = isset($data['@fields']) ? $data['@fields'] : $data;
+
+                if (empty($field)) {
                     continue;
                 }
 
                 if (strpos($field, ';') !== false) {
                     $keys = explode(';', $field);
-                    $value = $data['@fields'][$keys[0]][$keys[1]];
+                    $value = $fieldData[$keys[0]][$keys[1]];
                 } else {
-                    $value = $data['@fields'][$field][0];
+                    $value = $fieldData[$field];
                 }
 
                 $criteria = array(

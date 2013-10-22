@@ -52,7 +52,7 @@ while(1) {
         }
     }
     if (!$process) {
-        echo "No config for tags ".implode(", ", $tags);
+        echo "No config for tags ".implode(", ", $tags)."\n";
     }
 }
 
