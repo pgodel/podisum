@@ -1,7 +1,6 @@
 {
     "name": "pgodel/podisum",
     "description": "Silex application to Summarize Logstash events",
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Pablo Godel",
@@ -18,10 +17,10 @@
         "getme/mongodb-silex-provider": "dev-master",
         "twig/twig": "1.*",
         "predis/predis": "dev-master",
-        "symfony/serializer": "2.3.*@dev",
+        "symfony/serializer": "2.3.6",
         "tobiassjosten/responsible-service-provider": "dev-master",
         "jbinfo/mobile-detect-service-provider": "1.0.*@dev",
-        "symfony/yaml": "v2.2.1"
+        "symfony/yaml": "v2.3.6"
     },
     "repositories": [
            {
