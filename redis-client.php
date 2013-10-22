@@ -40,7 +40,9 @@ while(1) {
     }
 
     $process = false;
-    foreach($data['@tags'] as $tag) {
+    $tags = isset($data['tags']) ? $data['tags'] : $data['@tags'];
+
+    foreach($tags as $tag) {
         $cfgs = $podisum->getConfigForTag($tag);
         foreach($cfgs as $cfg) {
             $podisum->insertMetric($data, $cfg['metric'], $cfg['ttl'], $cfg['summaries']);
@@ -50,7 +52,7 @@ while(1) {
         }
     }
     if (!$process) {
-        echo "No config for tags ".implode(", ", $data['@tags']);
+        echo "No config for tags ".implode(", ", $tags);
     }
 }
 
